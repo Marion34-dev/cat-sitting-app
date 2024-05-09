@@ -1,6 +1,8 @@
+require('module-alias/register')
 const express = require('express');
-const loginRoute = require('./src/routes/login'); 
-const registerRoute = require('./src/routes/register'); 
+const loginRoute = require('@loginRoute'); 
+const registerRoute = require('@registerRoute');
+
 
 // Start server
 const app = express();

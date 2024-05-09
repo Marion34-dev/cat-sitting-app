@@ -14,11 +14,19 @@
     "express": "^4.19.2",
     "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.2",
+    "module-alias": "^2.2.3",
     "pg": "^8.11.5",
     "sequelize": "^6.37.3"
   },
   "devDependencies": {
     "jest": "^29.7.0",
     "supertest": "^7.0.0"
-  }
+  },
+  "_moduleAliases": {
+    "@db": "src/db.connection.js",
+    "@loginRoute": "src/routes/login",
+    "@registerRoute": "src/routes/register",
+    "@authMiddleware": "src/middleware/authentication.js",
+    "@modelUser": "src/models/user"
+}
 }
