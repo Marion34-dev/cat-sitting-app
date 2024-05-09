@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const authenticateUser = require('@authMiddleware');
+const { sendHTTPResponse } = require('@httpResponses');
 
 router.post('/', authenticateUser, (req, res) => {
   try {
@@ -10,8 +11,9 @@ router.post('/', authenticateUser, (req, res) => {
     res.json({ token });
     
   } catch (error) {
-    console.error(error);
-    res.status(500).send('Internal server error.');
+      console.error(error);
+      //res.status(500).send('Internal server error.');
+      return sendHTTPResponse(res, 500, 'Internal server error.');
   }
 });
 

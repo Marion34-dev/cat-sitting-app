@@ -1,0 +1,7 @@
+function sendHTTPResponse(res, status, message) {
+  return res.status(status).send(message);
+}
+
+module.exports = {
+  sendHTTPResponse
+};
