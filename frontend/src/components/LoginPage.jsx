@@ -4,9 +4,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import '../App.css';
+
 const LoginPage = () => {
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: ''
   });
   const [errors, setErrors] = useState({});
@@ -15,12 +16,9 @@ const LoginPage = () => {
 
   const validateInput = () => {
     const newErrors = {};
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //no whitespace, one dot & one @
-    if (!formData.email) {
-      newErrors.email = 'Email is required';
-    } else if (!emailPattern.test(formData.email)) {  // test() from RegExp object, returns boolean
-      newErrors.email = 'Invalid email format';
-    }
+    if (!formData.username) {
+      newErrors.username = 'Username is required';
+    } 
     if (!formData.password) {
       newErrors.password = 'Password is required';
     }
@@ -28,7 +26,7 @@ const LoginPage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-    // updates the formData and clears any errors with new user input value
+  // updates the formData and clears any errors with new user input value
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -41,7 +39,7 @@ const LoginPage = () => {
     });
   };
 
-    // prevents default form submission, validate input, sends post request 
+  // prevents default form submission, validate input, sends post request 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateInput()) {
@@ -49,7 +47,7 @@ const LoginPage = () => {
       return;
     }
     try {
-      const response = await axios.post('/api/login', formData);
+      const response = await axios.post('http://localhost:3000/login', formData);
       if (response.data.token) {
         localStorage.setItem('token', response.data.token); // if request successful, token is stored & user sent to dashboard jsx
         toast.success('Login successful');
@@ -58,7 +56,7 @@ const LoginPage = () => {
         toast.error('Login failed. Please try again.');
       }
     } catch (error) {
-        toast.error('Login failed. Please try again.');
+      toast.error('Login failed. Please try again.');
     }
   };
 
@@ -72,15 +70,15 @@ const LoginPage = () => {
         <h1>Login to PurrfectSitter</h1>
         <form className="login-form" onSubmit={handleSubmit}>
           <label>
-            Email:
+            Username:
             <input
-              type="email"
-              name="email"
-              value={formData.email}
+              type="text"
+              name="username"
+              value={formData.username}
               onChange={handleChange}
               required
             />
-            {errors.email && <p className="error">{errors.email}</p>}
+            {errors.username && <p className="error">{errors.username}</p>}
           </label>
           <label>
             Password:

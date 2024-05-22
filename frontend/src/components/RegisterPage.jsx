@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
 import '../App.css';
+
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
     username: '',
@@ -55,7 +56,7 @@ const RegisterPage = () => {
       return;
     }
     try {
-      const response = await axios.post('/api/register', formData);
+      const response = await axios.post('http://localhost:3000/register', formData);
       if (response.data.success) {
         toast.success(response.data.message);
         if (response.data.token) { // if request successful, token is stored & user sent to dashboard jsx
