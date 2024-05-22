@@ -3,14 +3,11 @@ body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+        sans-serif; /* suitable with all browsers */
+    -webkit-font-smoothing: antialiased; /* smooth edges for improved legibility */
+    -moz-osx-font-smoothing: grayscale; /* same but for Firefox on macOS */
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
 
 /* LandingPage styles */
 .landing-page {
@@ -56,4 +53,69 @@ code {
 .btn:hover {
     background-color: #6e8efb;
     color: #fff;
+}
+
+/* RegisterPage and LoginPage styles */
+.register-page,
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: #fff;
+    text-align: center;
+}
+
+.register-form,
+.login-form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+.register-form label,
+.login-form label {
+    display: block;
+    margin-bottom: 1em;
+    color: #333;
+}
+
+.register-form input,
+.login-form input {
+    width: 100%;
+    padding: 0.75em;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-top: 0.5em;
+    font-size: 1em;
+}
+
+.register-form .btn,
+.login-form .btn {
+    background-color: #6e8efb;
+    color: #fff;
+    padding: 0.75em 1.5em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.register-form .btn:hover,
+.login-form .btn:hover {
+    background-color: #fff;
+    color: #6e8efb;
+    border: 1px solid #6e8efb;
+}
+
+/* errors styling */
+.error {
+    color: darkred;
+    font-size: 0.875em;
+    margin-top: 0.25em;
 }
