@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
 import '../App.css';
-
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
     username: '',
@@ -50,22 +51,24 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateInput()) {
+      toast.error('Please fix the errors before submitting.');
       return;
     }
     try {
       const response = await axios.post('/api/register', formData);
       if (response.data.success) {
+        toast.success(response.data.message);
         if (response.data.token) { // if request successful, token is stored & user sent to dashboard jsx
           localStorage.setItem('token', response.data.token);
           navigate('/dashboard');
         } else {
           // Handle case where no token is provided
-          alert('Registration successful, but no token provided. Please log in manually.');
+          toast.info('Registration successful, but login failed. Please log in manually.');
           navigate('/login');
         }
       }
     } catch (error) {
-      alert('Registration failed. Please try again.');
+      toast.error('Registration failed. Please try again.');
     }
   };
 
@@ -117,6 +120,7 @@ const RegisterPage = () => {
           </div>
         </form>
       </header>
+      <ToastContainer />
     </div>
   );
 };

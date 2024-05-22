@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import '../App.css';
-
 const LoginPage = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -44,18 +45,20 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateInput()) {
+      toast.error('Please fix the errors before submitting.');
       return;
     }
     try {
       const response = await axios.post('/api/login', formData);
       if (response.data.token) {
         localStorage.setItem('token', response.data.token); // if request successful, token is stored & user sent to dashboard jsx
+        toast.success('Login successful');
         navigate('/dashboard');
       } else {
-        alert('Login failed. Please try again.');
+        toast.error('Login failed. Please try again.');
       }
     } catch (error) {
-      alert('Login failed. Please try again.');
+        toast.error('Login failed. Please try again.');
     }
   };
 
@@ -96,6 +99,7 @@ const LoginPage = () => {
           </div>
         </form>
       </header>
+      <ToastContainer />
     </div>
   );
 };
