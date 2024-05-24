@@ -3,6 +3,9 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const authenticateUser = require('@authMiddleware');
 const { sendHTTPResponse } = require('@httpResponses');
+require('dotenv').config();
+
+const secretKey = process.env.secretKey;
 
 router.post('/', authenticateUser, (req, res) => {
   try {

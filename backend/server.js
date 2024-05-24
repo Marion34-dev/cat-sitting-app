@@ -8,7 +8,7 @@ const corsMiddleware = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(corsMiddleware()); // Use the new variable name
+app.use(corsMiddleware());
 app.use(express.json());
 
 app.use('/login', loginRoute);

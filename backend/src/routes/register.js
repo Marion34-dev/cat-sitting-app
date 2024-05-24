@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('@modelUser');
 const { sendHTTPResponse } = require('@httpResponses');
 
+
 router.post('/', async (req, res) => {
   const { username, password, email } = req.body;
 

@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('@db'); // Import Sequelize instance
+const sequelize = require('@db');
 
 // Define the User model
 const User = sequelize.define('User', {
@@ -15,7 +15,7 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            len: [8, 100] // Password must be between 8 and 100 characters
+            len: [6, 100] // Password must be between 6 and 100 characters
         }
     },
     email: {

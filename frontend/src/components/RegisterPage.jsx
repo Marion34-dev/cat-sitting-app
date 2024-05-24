@@ -50,28 +50,35 @@ const RegisterPage = () => {
 
   // prevents default form submission, validate input, sends post request
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!validateInput()) {
-      toast.error('Please fix the errors before submitting.');
-      return;
-    }
-    try {
-      const response = await axios.post('http://localhost:3000/register', formData);
-      if (response.data.success) {
-        toast.success(response.data.message);
-        if (response.data.token) { // if request successful, token is stored & user sent to dashboard jsx
-          localStorage.setItem('token', response.data.token);
-          navigate('/dashboard');
-        } else {
-          // Handle case where no token is provided
-          toast.info('Registration successful, but login failed. Please log in manually.');
+  e.preventDefault();
+  if (!validateInput()) {
+    toast.error('Please fix the errors before submitting.');
+    return;
+  }
+  try {
+    const response = await axios.post('http://localhost:3000/register', formData);
+    console.log('API Response:', response);
+
+    // Check if the response data has the expected structure
+    if (response.status === 201 && response.data) {
+      const successMessage = response.data.message || 'User created successfully.';
+      console.log('Registration success:', successMessage);
+      toast.success(successMessage, {
+        onClose: () => {
+          console.log('Navigating to login');
           navigate('/login');
         }
-      }
-    } catch (error) {
+      });
+    } else {
+      console.log('Registration failed:', response.data.message);
       toast.error('Registration failed. Please try again.');
     }
-  };
+  } catch (error) {
+    toast.error('Registration failed. Please try again.');
+    console.error('Registration error:', error);
+  }
+};
+
 
   const handleBackToHome = () => {
     navigate('/'); // Navigate back to home
