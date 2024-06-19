@@ -10,13 +10,11 @@ const secretKey = process.env.secretKey;
 router.post('/', authenticateUser, (req, res) => {
   try {
     // Generate JWT token upon successful login
-    const token = jwt.sign({ username: req.user.username }, secretKey);
-    res.json({ token });
-    
+    const token = jwt.sign({ id: req.user.id, username: req.user.username, isPetSitter: req.user.isPetSitter }, secretKey);
+    res.json({ token, isPetSitter: req.user.isPetSitter });
   } catch (error) {
-      console.error(error);
-      //res.status(500).send('Internal server error.');
-      return sendHTTPResponse(res, 500, 'Internal server error.');
+    console.error(error);
+    return sendHTTPResponse(res, 500, 'Internal server error.');
   }
 });
 

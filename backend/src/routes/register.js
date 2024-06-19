@@ -5,11 +5,11 @@ const { sendHTTPResponse } = require('@httpResponses');
 
 
 router.post('/', async (req, res) => {
-  const { username, password, email } = req.body;
+  const { username, password, email, isPetSitter } = req.body;
 
   try {
       // Create a new user record
-      const newUser = await User.create({ username, password, email });
+      const newUser = await User.create({ username, password, email, isPetSitter });
       //res.status(201).send('User created successfully.');
       return sendHTTPResponse(res, 201, 'User created successfully.');
 

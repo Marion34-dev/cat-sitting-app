@@ -26,6 +26,10 @@ const User = sequelize.define('User', {
             isEmail: true // Email must be a valid email address (@, ., no whitespace characters)
         }
     },
+    isPetSitter: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+    },
     deletedAt: { // hold the timestamp of deletion or null if not deleted
         type: DataTypes.DATE,
         allowNull: true,

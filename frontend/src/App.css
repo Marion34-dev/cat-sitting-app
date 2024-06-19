@@ -57,7 +57,8 @@ body {
 
 /* RegisterPage and LoginPage styles */
 .register-page,
-.login-page {
+.login-page,
+.dashboard {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,7 +69,8 @@ body {
 }
 
 .register-form,
-.login-form {
+.login-form,
+.petsitter-form {
     background: rgba(255, 255, 255, 0.9);
     padding: 2em;
     border-radius: 10px;
@@ -78,14 +80,16 @@ body {
 }
 
 .register-form label,
-.login-form label {
+.login-form label,
+.petsitter-form label {
     display: block;
     margin-bottom: 1em;
     color: #333;
 }
 
 .register-form input,
-.login-form input {
+.login-form input,
+.petsitter-form input {
     width: 100%;
     padding: 0.75em;
     border-radius: 5px;
@@ -95,7 +99,8 @@ body {
 }
 
 .register-form .btn,
-.login-form .btn {
+.login-form .btn,
+.petsitter-form .btn {
     background-color: #6e8efb;
     color: #fff;
     padding: 0.75em 1.5em;
@@ -107,7 +112,8 @@ body {
 }
 
 .register-form .btn:hover,
-.login-form .btn:hover {
+.login-form .btn:hover,
+.petsitter-form .btn:hover {
     background-color: #fff;
     color: #6e8efb;
     border: 1px solid #6e8efb;

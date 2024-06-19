@@ -29,6 +29,8 @@
     "@registerRoute": "src/routes/register",
     "@authMiddleware": "src/middleware/authentication.js",
     "@modelUser": "src/models/user",
-    "@httpResponses": "src/utils/httpResponses"
+    "@modelPetSitter": "src/models/sitter",
+    "@httpResponses": "src/utils/httpResponses",
+    "@profile": "src/routes/profile"
   }
 }

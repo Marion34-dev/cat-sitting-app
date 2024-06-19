@@ -1,6 +1,4 @@
-const jwt = require('jsonwebtoken');
 const User = require('@modelUser');
-require('dotenv').config();
 const { sendHTTPResponse } = require('@httpResponses');
 
 const authenticateUser = async (req, res, next) => {
@@ -9,7 +7,6 @@ const authenticateUser = async (req, res, next) => {
   try {
     // Find the user in the database by username
     const user = await User.findOne({ where: { username } });
-    // console.log('Fetched user:', user);
 
     // If user not found
     if (!user) {
@@ -17,7 +14,7 @@ const authenticateUser = async (req, res, next) => {
       return sendHTTPResponse(res, 401, 'Invalid username.');
     }
 
-    // Compare passwords
+    // Compare passwords directly
     if (user.password !== password) {
       console.log('Password mismatch');
       return sendHTTPResponse(res, 401, 'Invalid password.');

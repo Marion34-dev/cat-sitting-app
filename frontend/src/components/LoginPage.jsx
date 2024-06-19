@@ -49,13 +49,13 @@ const LoginPage = () => {
     }
     try {
       const response = await axios.post('http://localhost:3000/login', formData);
-      console.log('Login response:', response); // Log the response for debugging
+      console.log('Login response:', response); 
 
       if (response.data.token) {
         localStorage.setItem('token', response.data.token); // if request successful, token is stored & user sent to dashboard jsx
         toast.success('Login successful');
         setTimeout(() => {
-          navigate('/dashboard');
+          navigate(response.data.isPetSitter ? '/petsitter-dashboard' : '/user-dashboard');
         }, 1500); // Delay navigation by 1.5 seconds to allow the toast to display
       } else {
         toast.error('Login failed. Please try again.');

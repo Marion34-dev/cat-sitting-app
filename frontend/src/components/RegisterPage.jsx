@@ -9,7 +9,8 @@ const RegisterPage = () => {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
-    password: ''
+    password: '',
+    isPetSitter: false
   });
   const [errors, setErrors] = useState({});
 
@@ -37,10 +38,10 @@ const RegisterPage = () => {
 
   // updates the formData and clears any errors with new user input value
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: type === 'checkbox' ? checked : value // Handle checkbox
     });
     setErrors({
       ...errors,
@@ -121,6 +122,15 @@ const RegisterPage = () => {
               required
             />
             {errors.password && <p className="error">{errors.password}</p>}
+          </label>
+           <label>
+            Are you a Pet Sitter?
+            <input
+              type="checkbox"
+              name="isPetSitter"
+              checked={formData.isPetSitter}
+              onChange={handleChange}
+            />
           </label>
           <div className="buttons">
             <button type="submit" className="btn">Register</button>
